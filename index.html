@@ -47,6 +47,24 @@
             width: 70%;
             margin: 0 auto;
         }
+        .collapsible {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .collapsible::after {
+            content: " ▼";
+            font-size: 0.9em;
+        }
+
+        .collapsible.active::after {
+            content: " ▲";
+        }
+
+        .collapsible-content {
+            display: none;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -70,8 +88,8 @@
 
         <h2>BS in Data Science Applications, IITM</h2>
         <!-- Foundation Year -->
-        <h3>Foundation (Year 1)</h3>
-        <ul>
+        <h3 class="collapsible" onclick="toggleSection('foundation-content')">Foundation (Year 1)</h3>
+        <ul id="foundation-content" class="collapsible-content">
             <li>
                 Maths 1
                 <ul>
@@ -469,5 +487,21 @@
         </ul>
 
     </div>
+
+<script>
+function toggleSection(id) {
+    const content = document.getElementById(id);
+    const header = event.target;
+
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        header.classList.add("active");
+    } else {
+        content.style.display = "none";
+        header.classList.remove("active");
+    }
+}
+</script>
+
 </body>
 </html>
